@@ -4,6 +4,9 @@
     right: 0;
     width: 37px;
     height: 37px;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: -1;
+    border: none;
     background-image: url(../../../images/button-close.svg);
     background-size: cover;
   }
