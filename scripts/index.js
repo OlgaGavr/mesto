@@ -71,15 +71,14 @@ function closePopup(evt) {
   evt.target.closest('.popup').classList.remove('popup_opened');
 }
 
-
 function deleteCard(evt) {
   evt.target.closest('.card').remove();
 }
 
-
 function previewCard(evt) {
   popupImage.src = evt.target.src;
   popupCaption.textContent = evt.target.closest('.card').querySelector('.card__text').textContent;
+  popupImage.alt = evt.target.closest('.card').querySelector('.card__text').textContent;
   openPopup(popupPreview);
 }
 
