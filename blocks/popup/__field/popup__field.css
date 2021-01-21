@@ -9,3 +9,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     width: 100%;
    }
+
+   .popup__field::placeholder{
+       color #c4c4c4;
+   }

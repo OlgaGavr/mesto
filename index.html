@@ -26,56 +26,14 @@
         </div>
         <button type="button" class="button button_action_add" aria-label="добавить"></button>
       </section>
-      <section class="cards content__cards">
-        <article class="card">
-          <img src="./images/carachaevo.jpg" alt="Старинный замок на фоне гор" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Карачаево-Черкессия</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/elbrus.png" alt="Эльбрус вдалеке" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Гора Эльбрус</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/dombay.png" alt="Заснеженный Домбай" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Домбай</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/elbrus.png" alt="Эльбрус вдалеке" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Гора Эльбрус</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/dombay.png" alt="Заснеженный Домбай" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Домбай</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
-        <article class="card">
-          <img src="./images/carachaevo.jpg" alt="Старинный замок на фоне гор" class="card__image">
-          <div class="card__group">
-            <h2 class="card__text">Карачаево-Черкессия</h2>
-            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
-          </div>
-        </article>
+      <section class="cards content__cards">        
       </section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <article class="popup">
+    <article class="popup popup_type_edit">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form" name="editprofile">
@@ -86,9 +44,44 @@
  
           <button type="submit" class="button button_action_save">Сохранить</button>
         </form>
-        <button type="button" class="button button_action_close" aria-label="закрыть"></button>
+        <button type="button" class="button button_action_close button_action_close-edit" aria-label="закрыть"></button>
       </div>
     </article>
+    <article class="popup popup_type_add">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="form" name="addplace">
+          <ul class="popup__fields">
+            <li><input type="text" name="firstname" placeholder = "Название" class="popup__field popup__field_text_name"/></li>
+            <li><input type="text" name="about" placeholder = "Ссылка на картинку" class="popup__field popup__field_text_about"/></li>
+          </ul>
+ 
+          <button type="submit" class="button button_action_save">Создать</button>
+        </form>
+        <button type="button" class="button button_action_close button_action_close-add" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_preview">
+      <div class="popup__container-preview">
+        <figure class="popup__figure">
+           <img class="popup__image">
+           <figcaption class="popup__caption"></figcaption>
+        </figure>
+        <button type="button" class="button button_action_close button_action_close-preview" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <template class="item-template">
+      <article class="card">
+        <button type = "button" class = "button button_action_delete" aria-label="удалить"></button>
+        <img class="card__image">
+        <div class="card__group">
+          <h2 class="card__text"></h2>
+          <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
+        </div>
+      </article>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>    
