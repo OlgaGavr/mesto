@@ -1,7 +1,6 @@
 .popup__container-preview{
-    background: #FFFFFF;
-    border-radius: 0;
-    max-width: 75vw;
-    max-height: 75vh;
-    position: relative;
+   border-radius: 0;
+   max-width: 75vw;
+   max-height: 75vh;
+   position: relative;
  }
