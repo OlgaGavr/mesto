@@ -36,10 +36,16 @@
     <article class="popup popup_type_edit">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="editprofile">
+        <form class="form" name="editprofile" novalidate>
           <ul class="popup__fields">
-            <li><input type="text" name="firstname" class="popup__field popup__field_text_name"/></li>
-            <li><input type="text" name="about" class="popup__field popup__field_text_about"/></li>
+            <li>
+              <input type="text" id="name-input" class="popup__field popup__field_text_name" minlength="2" maxlength="40" name="firstname" required/>
+              <span class="name-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+            <li>
+              <input type="text" id="about-input"  class="popup__field popup__field_text_about" minlength="2" maxlength="200" name="about" required/>
+              <span class="about-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
           </ul>
  
           <button type="submit" class="button button_action_save">Сохранить</button>
@@ -47,13 +53,20 @@
         <button type="button" class="button button_action_close button_action_close-edit" aria-label="закрыть"></button>
       </div>
     </article>
+
     <article class="popup popup_type_add">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form class="form" name="addplace">
+        <form class="form" name="addplace" novalidate>
           <ul class="popup__fields">
-            <li><input type="text" name="firstname" placeholder = "Название" class="popup__field popup__field_text_name"/></li>
-            <li><input type="text" name="about" placeholder = "Ссылка на картинку" class="popup__field popup__field_text_about"/></li>
+            <li>
+              <input type="text" id="nameAdd-input"  name="firstname" class="popup__field popup__field_text_name" minlength="2" maxlength="30" required placeholder = "Название"/>
+              <span class="nameAdd-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+            <li>
+              <input type="url" id="link-input"  name="about" class="popup__field popup__field_text_about" placeholder = "Ссылка на картинку" required/>
+              <span class="link-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
           </ul>
  
           <button type="submit" class="button button_action_save">Создать</button>
@@ -84,5 +97,6 @@
     </template>
     <script src = "./scripts/initial-сards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src = "./scripts/validate.js"></script>
   </body>
 </html>    

@@ -21,7 +21,7 @@ const itemTemplate = document.querySelector('.item-template').content;
 const cards = document.querySelector('.cards');
 
 function render(masCard){
-  initialCards.forEach((card) => {
+  masCard.forEach((card) => {
       renderCard(createCard(card), cards)
   });
 };
@@ -47,8 +47,20 @@ function likeCard(evt){
   evt.target.classList.toggle('button_action_like-active');
 }
 
+function closePopupEsc(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
 function closePopup(popupParam) {
    popupParam.classList.remove('popup_opened');
+   document.removeEventListener('keydown', closePopupEsc);
+}
+
+function openPopup(popupParam) {
+  popupParam.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function deleteCard(evt) {
@@ -60,10 +72,6 @@ function previewCard(evt) {
   popupCaption.textContent = evt.target.closest('.card').querySelector('.card__text').textContent;
   popupImage.alt = evt.target.closest('.card').querySelector('.card__text').textContent;
   openPopup(popupPreview);
-}
-
-function openPopup(popupParam) {
-   popupParam.classList.add('popup_opened');
 }
 
 function handleSubmitEdit (evt) {
@@ -93,19 +101,39 @@ function openEditPopup(){
 }
 
 editButton.addEventListener('click', () => {
+  buttonOff(formEdit, configValidation);
   openEditPopup();
+  resetError(formEdit, configValidation);
   openPopup(popupEdit);
 });
 addButton.addEventListener('click', () => {
+  buttonOff(formAdd, configValidation);
   openPopup(popupAdd);
   resetEditForm(formAdd);
+  resetError(formAdd, configValidation);
 });
 closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 closeButtonPreview.addEventListener('click', () => closePopup(popupPreview));
 formEdit.addEventListener('submit', handleSubmitEdit);
 formAdd.addEventListener('submit', handleSubmitAdd);
-
+popupEdit.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupEdit);
+  }
+});
+popupAdd.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+   closePopup(popupAdd)
+  }
+});
+popupPreview.addEventListener('click', (evt) => {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupPreview)
+  }
+});
 
 render(initialCards);
+
+
 
