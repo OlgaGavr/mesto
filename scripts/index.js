@@ -100,6 +100,12 @@ function openEditPopup(){
   popupAbout.value = profileAbout.textContent;
 }
 
+function closePopupByClickOnOverlay(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
+  }
+}
+
 editButton.addEventListener('click', () => {
   buttonOff(formEdit, configValidation);
   openEditPopup();
@@ -117,21 +123,9 @@ closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 closeButtonPreview.addEventListener('click', () => closePopup(popupPreview));
 formEdit.addEventListener('submit', handleSubmitEdit);
 formAdd.addEventListener('submit', handleSubmitAdd);
-popupEdit.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupEdit);
-  }
-});
-popupAdd.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-   closePopup(popupAdd)
-  }
-});
-popupPreview.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    closePopup(popupPreview)
-  }
-});
+popupEdit.addEventListener('click', closePopupByClickOnOverlay);
+popupAdd.addEventListener('click', closePopupByClickOnOverlay);
+popupPreview.addEventListener('click', closePopupByClickOnOverlay);
 
 render(initialCards);
 

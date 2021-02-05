@@ -17,13 +17,7 @@ const showInputError = (formElement, inputElement, errorMessage, config) => {
 
 const resetError = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-    
-    inputList.forEach((inputElement) => {
-        const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.remove(config.inputErrorClass);
-        errorElement.classList.remove(config.errorClass);
-        errorElement.textContent = "";
-    });
+    inputList.forEach(inputElement => hideInputError(formElement, inputElement, config)); 
 };
   
 const hideInputError = (formElement, inputElement, config) => {
