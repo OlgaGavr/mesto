@@ -35,7 +35,7 @@ function createCard(card) {
 
   cardElement.querySelector('.button_action_like').addEventListener('click', likeCard);
   cardElement.querySelector('.button_action_delete').addEventListener('click', deleteCard);
-  cardElementImage.addEventListener('click', previewCard);
+  cardElementImage.addEventListener('click', () => previewCard(card.name, card.link));
   return cardElement;
 }
 
@@ -67,10 +67,10 @@ function deleteCard(evt) {
   evt.target.closest('.card').remove();
 }
 
-function previewCard(evt) {
-  popupImage.src = evt.target.src;
-  popupCaption.textContent = evt.target.closest('.card').querySelector('.card__text').textContent;
-  popupImage.alt = evt.target.closest('.card').querySelector('.card__text').textContent;
+function previewCard(name, link) {
+  popupImage.src = link;
+  popupCaption.textContent = name;
+  popupImage.alt = name;
   openPopup(popupPreview);
 }
 
@@ -112,12 +112,14 @@ editButton.addEventListener('click', () => {
   resetError(formEdit, configValidation);
   openPopup(popupEdit);
 });
+
 addButton.addEventListener('click', () => {
   buttonOff(formAdd, configValidation);
   openPopup(popupAdd);
   resetEditForm(formAdd);
   resetError(formAdd, configValidation);
 });
+
 closeButtonAdd.addEventListener('click', () => closePopup(popupAdd));
 closeButtonEdit.addEventListener('click', () => closePopup(popupEdit));
 closeButtonPreview.addEventListener('click', () => closePopup(popupPreview));
