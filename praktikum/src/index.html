@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name= "description" content="портфолио Ольги Гавриловой на Яндекс.Практикуме">
+    <meta name ="keywords" content="html, css, javascript">
+    <meta name="author" content="Гаврилова Ольга">
+    <meta name="author" content="Место Россия">
+    
+    <title>Место Россия</title>
+  </head>
+  <body class="page">
+    <header class="header page__header">
+      <a href="#" target="_blank" rel="noopener"><img src="./images/logo.svg" alt='Логотип' class="header__logo"></a>
+    </header>
+    <main class="content page__content">
+      <section class="profile content__profile">
+        <img src="./images/foto.jpg" alt="Аватарка" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__group">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="button button_action_edit" aria-label="редактировать профиль"></button>
+          </div>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button type="button" class="button button_action_add" aria-label="добавить"></button>
+      </section>
+      <section class="cards content__cards">        
+      </section>
+    </main>
+    <footer class="footer page__footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <article class="popup popup_type_edit">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="form" name="editprofile" novalidate>
+          <ul class="popup__fields">
+            <li>
+              <input type="text" id="name-input" class="popup__field popup__field_text_name" minlength="2" maxlength="40" name="firstname" required/>
+              <span class="name-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+            <li>
+              <input type="text" id="about-input"  class="popup__field popup__field_text_about" minlength="2" maxlength="200" name="about" required/>
+              <span class="about-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+          </ul>
+ 
+          <button type="submit" class="button button_action_save">Сохранить</button>
+        </form>
+        <button type="button" class="button button_action_close button_action_close-edit" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_add">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="form" name="addplace" novalidate>
+          <ul class="popup__fields">
+            <li>
+              <input type="text" id="nameAdd-input"  name="firstname" class="popup__field popup__field_text_name" minlength="2" maxlength="30" required placeholder = "Название"/>
+              <span class="nameAdd-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+            <li>
+              <input type="url" id="link-input"  name="about" class="popup__field popup__field_text_about" placeholder = "Ссылка на картинку" required/>
+              <span class="link-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+          </ul>
+ 
+          <button type="submit" class="button button_action_save">Создать</button>
+        </form>
+        <button type="button" class="button button_action_close button_action_close-add" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_preview">
+      <div class="popup__container-preview">
+        <figure class="popup__figure">
+           <img class="popup__image" alt = 'Пока ничего' src = '#'>
+           <figcaption class="popup__caption"></figcaption>
+        </figure>
+        <button type="button" class="button button_action_close button_action_close-preview" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <template class="item-template">
+      <article class="card">
+        <button type = "button" class = "button button_action_delete" aria-label="удалить"></button>
+        <img class="card__image" alt = 'Пока ничего' src = '#'>
+        <div class="card__group">
+          <h2 class="card__text"></h2>
+          <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
+        </div>
+      </article>
+    </template>
+  </body>
+</html>    
