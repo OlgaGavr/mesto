@@ -6,10 +6,11 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import './index.css';
 import { UserInfo } from '../components/UserInfo.js';
-
-//сonst popupEdit = document.querySelector('.popup_type_edit');
+const editPopup = document.querySelector('.popup_type_edit');
 const editButton = document.querySelector('.button_action_edit');
 const addButton = document.querySelector('.button_action_add');
+const userNamePopup = editPopup.querySelector('.popup__field_text_name');
+const userAboutPopup =  editPopup.querySelector('.popup__field_text_about');
 
 const cardImage = new PopupWithImage('.popup_type_preview');
 cardImage.setEventListeners();
@@ -52,9 +53,8 @@ addButton.addEventListener('click', () => {
 
 editButton.addEventListener('click', () => {
   const userProfil =  user.getUserInfo();
-//  popupEdit.querySelector('.popup__field_text_name').value = userProfil.firstName;
- // popupEdit.querySelector('.popup__field_text_about').value = userProfil.about;
-console.log(userProfil)
+  userNamePopup.value = userProfil.name;
+  userAboutPopup.value = userProfil.link;
   popupEdit.openPopup();
 });
 
