@@ -1,20 +1,19 @@
-import { profileName, profileAbout } from '../utils/constants.js';
 export class UserInfo {
-    constructor(Name, About) {
-      this._Name = Name;
-      this._About = About;
+    constructor({selectorName, selectorAbout}) {
+      this._Name = document.querySelector(selectorName);
+      this._About = document.querySelector(selectorAbout);;
     }
 
     getUserInfo() { 
       const user = {
-        name: this._Name,
-        link: this._About
+        name: this._Name.textContent,
+        link: this._About.textContent
       };
       return user;
     }
 
-    setUserInfo() {
-      profileName.textContent = this._Name;
-      profileAbout.textContent =  this._About;
+    setUserInfo(name, about) {
+      this._Name.textContent = name;
+      this._About.textContent =  about;
     }
 }

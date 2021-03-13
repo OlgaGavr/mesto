@@ -33,9 +33,5 @@ export const configValidation = {
     inputErrorClass: 'popup__field_type_error',
     errorClass: 'popup__field-error_active'
 };
-export const profileName = document.querySelector('.profile__name');
-export const profileAbout = document.querySelector('.profile__about');
-const popupEdit = document.querySelector('.popup_type_edit');
-export const popupName = popupEdit.querySelector('.popup__field_text_name');
-export const popupAbout = popupEdit.querySelector('.popup__field_text_about');
+
 

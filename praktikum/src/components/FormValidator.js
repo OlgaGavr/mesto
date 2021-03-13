@@ -46,10 +46,16 @@ export class FormValidator{
           buttonElement.removeAttribute('disabled', true);
         }
     };
-     
+
     enableValidation() {
         const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+        this._formElement.addEventListener('reset', () => {
+          inputList.forEach((inputElement) => {
+            this._hideInputError(inputElement)
+            this._toggleButtonState(inputList, buttonElement);
+          })
+        });
         this._toggleButtonState(inputList, buttonElement);
         inputList.forEach((inputElement) => {
           inputElement.addEventListener('input', () => {

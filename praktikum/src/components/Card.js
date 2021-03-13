@@ -33,5 +33,6 @@ export class Card{
     this._element.querySelector('.button_action_like').addEventListener('click', () => {this._handleLikeCard()});
     this._element.querySelector('.button_action_delete').addEventListener('click', () => {this._handlDdeleteCard()});
     this._cardElementImage.addEventListener('click', () => {this._handlPreviewCard(this._name, this._link)}); 
+ 
   }
 }
