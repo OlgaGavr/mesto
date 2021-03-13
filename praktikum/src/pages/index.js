@@ -1,11 +1,11 @@
-import { Section } from './components/Section.js';
-import { Card } from './components/Card.js';
-import { initialCards, profileName, profileAbout, popupName, popupAbout, configValidation } from './utils/constants.js';
-import { FormValidator } from './components/FormValidator.js';
-import { PopupWithForm } from './components/PopupWithForm.js';
-import { PopupWithImage } from './components/PopupWithImage.js';
-import './pages/index.css';
-import { UserInfo } from './components/UserInfo.js';
+import { Section } from '../components/Section.js';
+import { Card } from '../components/Card.js';
+import { initialCards, profileName, profileAbout, popupName, popupAbout, configValidation } from '../utils/constants.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import './index.css';
+import { UserInfo } from '../components/UserInfo.js';
 
 const editButton = document.querySelector('.button_action_edit');
 const addButton = document.querySelector('.button_action_add');
