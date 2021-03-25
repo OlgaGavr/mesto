@@ -10,7 +10,6 @@ export class PopupWithForm extends Popup {
     this._inputList = this._popup.querySelectorAll('.popup__field');
     this._formValues = {};
     this._inputList.forEach(input => this._formValues[input.name] = input.value);
-    console.log('formValues:', this._formValues)
     return this._formValues;
 
   }
@@ -18,6 +17,7 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
+      console.log('escuchar')
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
       this.closePopup();

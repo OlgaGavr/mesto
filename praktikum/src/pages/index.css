@@ -44,3 +44,5 @@
 @import url(../blocks/popup/__field/_type_error/popup__field_type_error.css);
 @import url(../blocks/popup/__field-error/_active/popup__field-error_active.css);
 @import url(../blocks/button/_inactive/button_inactive.css);
+@import url(../blocks/card/card__like-group.css);
+@import url(../blocks/card/card__likes.css);
