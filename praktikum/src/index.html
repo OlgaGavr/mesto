@@ -16,13 +16,13 @@
     </header>
     <main class="content page__content">
       <section class="profile content__profile">
-        <img src="./images/foto.jpg" alt="Аватарка" class="profile__avatar">
+        <img src="#" alt="Аватарка" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__group">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button type="button" class="button button_action_edit" aria-label="редактировать профиль"></button>
           </div>
-          <p class="profile__about">Исследователь океана</p>
+          <p class="profile__about"></p>
         </div>
         <button type="button" class="button button_action_add" aria-label="добавить"></button>
       </section>
@@ -39,7 +39,7 @@
         <form class="form" name="editprofile" novalidate>
           <ul class="popup__fields">
             <li>
-              <input type="text" id="name-input" class="popup__field popup__field_text_name" minlength="2" maxlength="40" name="firstname" required/>
+              <input type="text" id="name-input" class="popup__field popup__field_text_name" minlength="2" maxlength="40" name="name" required/>
               <span class="name-input-error popup__input-error">Необходимо заполнить данное поле</span>
             </li>
             <li>
@@ -85,13 +85,43 @@
       </div>
     </article>
 
+    <article class="popup popup_type_delete">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="form" name="delplace" novalidate>
+          <button type="submit" class="button button_action_save">Да</button>
+        </form>
+        <button type="button" class="button button_action_close button_action_close-del" aria-label="закрыть"></button>
+      </div>
+    </article>
+
+    <article class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="form" name="editavatar" novalidate>
+          <ul class="popup__fields">
+            <li>
+              <input type="url" id="linkavatar-input"  name="avatar" class="popup__field popup__field_text_avatar" placeholder = "Ссылка на аватарку" required/>
+              <span class="linkavatar-input-error popup__input-error">Необходимо заполнить данное поле</span>
+            </li>
+          </ul>
+ 
+          <button type="submit" class="button button_action_save">Сохранить</button>
+        </form>
+        <button type="button" class="button button_action_close button_action_close-avatar" aria-label="закрыть"></button>
+      </div>
+    </article>
+
     <template class="item-template">
       <article class="card">
         <button type = "button" class = "button button_action_delete" aria-label="удалить"></button>
         <img class="card__image" alt = 'Пока ничего' src = '#'>
         <div class="card__group">
           <h2 class="card__text"></h2>
-          <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
+          <div class="card__like-group">
+            <button type="button" class="button button_action_like" aria-label="поставить лайк"></button>
+            <h3 class="card__likes"></h3>
+          </div>
         </div>
       </article>
     </template>
