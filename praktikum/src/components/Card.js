@@ -35,7 +35,6 @@ export class Card{
       this._cardLikeButton.classList.add('button_action_like-active');
       this._isLike = true
     } else this._isLike = false;
-//    console.log('this._myId', this._myId, 'this._owner', this._owner)
     if (this._myId !== this._owner) {
       this._handlDdeleteCard(this._cardDelButton);
     }

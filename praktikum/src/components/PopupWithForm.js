@@ -17,11 +17,9 @@ export class PopupWithForm extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
-      console.log('escuchar')
       evt.preventDefault();
       this._handleSubmitForm(this._getInputValues());
-      this.closePopup();
-    });
+   });
   }
 
   closePopup() {
