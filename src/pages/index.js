@@ -26,15 +26,18 @@ const user = new UserInfo({
                            selectorAbout: ".profile__about",
                            selectorAvatar: ".profile__avatar" 
                           });
-                          
-api.getUser()
+
+api.getAllData()
   .then((result) => {
-                     user.setUserInfo(result.name, result.about);
-                     user.setUserAvatar(result.avatar)
-                     myId = result._id;
-                    }
-  );
- 
+    const [resultUser, resultCard] = result;
+    user.setUserInfo(resultUser.name, resultUser.about);
+    user.setUserAvatar(resultUser.avatar)
+    myId = resultUser._id;
+
+    cardList.renderItems(resultCard);
+  })
+  .catch(err => console.log(err));
+
 const popupEdit = new PopupWithForm('.popup_type_edit',
   {handleSubmitForm: (userElement) => {
      editPopup.querySelector('.button_action_save').textContent = 'Сохранение...';
@@ -43,6 +46,7 @@ const popupEdit = new PopupWithForm('.popup_type_edit',
          user.setUserInfo(result.name, result.about)
        })
        .then(() => {popupEdit.closePopup()})
+       .catch(err => console.log(err));
   }
 })
 popupEdit.setEventListeners();
@@ -55,6 +59,7 @@ const popupEditAvatar = new PopupWithForm('.popup_type_edit-avatar',
          user.setUserAvatar(result.avatar)
        })
        .then(() => {popupEditAvatar.closePopup()})
+       .catch(err => console.log(err));
   }
 })
 popupEditAvatar.setEventListeners();
@@ -69,24 +74,16 @@ const cardList = new Section(
                         }}, 
                         '.cards');
 
-api.getCards().then((result) => {cardList.renderItems(result)});
-
 const popupAdd = new PopupWithForm(
                        '.popup_type_add',
                        {handleSubmitForm: (newCard) => {
                          addPopup.querySelector('.button_action_save').textContent = 'Сохранение...';
                          api.postCard(newCard)
                           .then((result) => {
-                            const cardList = new Section(
-                              {items: result, 
-                               renderer: (itemCard) =>{
-                                 cardList.addItem(createNewCard(itemCard))
-                               }
-                              },
-                              '.cards');
-                              cardList.addItem(createNewCard(result))
+                            cardList.addItem(createNewCard(result))
                           })
                           .then(() => {popupAdd.closePopup()})
+                          .catch(err => console.log(err));
                         }})
 
  const popupSubmit = new PopupWithSubmit('.popup_type_delete');
@@ -104,30 +101,27 @@ function createNewCard(itemNewCard) {
                          handlPreviewCard: (cardName, cardLink) => {
                            cardImage.openPopup(cardName, cardLink)
                          },
-                         handleLikeClick: (isLike, cardLikes, element) => {
-                            if (!isLike) {
+                         handleLikeClick: (cardLikeParam) => {
+                            if (!cardLikeParam) {
                               api.likeYes(itemNewCard._id,)
                                 .then((result) => {
-                                  cardLikes.textContent = result.likes.length;
-                                  element.querySelector('.button_action_like').classList.toggle('button_action_like-active');
-                                  cardNew.cardLike = cardNew.isLike(Array.from(result.likes).map((item) => {return item._id}));
-                                });
+                                  cardNew.updateLikes(Array.from(result.likes).map((item) => {return item._id}))
+                                })
+                                .catch(err => console.log(err));
                             } else {
                               api.likeNo(itemNewCard._id,)
                                 .then((result) => {
-                                  cardLikes.textContent = result.likes.length; 
-                                  element.querySelector('.button_action_like').classList.toggle('button_action_like-active');
-                                  cardNew.cardLike = cardNew.isLike(Array.from(result.likes).map((item) => {return item._id}));
+                                  cardNew.updateLikes(Array.from(result.likes).map((item) => {return item._id}))
                                 })
+                                .catch(err => console.log(err));
                             }
                          },
                          handleDeleteIconClick: (card) => {
                            popupSubmit.openPopup(card);
                            popupSubmit.setHandler((card) => {
                                                                  api.deleteCard(card.cardId)
-                                                                 .then(() => {
-                                                                   cardNew.deleteCard();
-                              });
+                                                                 .then(() => {cardNew.deleteCard()})
+                                                                 .catch(err => console.log(err));
                           })
                            
                          }}, 

@@ -3,7 +3,13 @@ export class Api {
     this._url = options.url;
     this._authorization = options.headers.authorization;
   }
-  
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
+  }
+
   getUser() {
     return fetch(`${this._url}/users/me`, {
       headers: {
@@ -11,13 +17,7 @@ export class Api {
         'Content-Type': 'application/json',
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err));
+    .then(this._checkResponse);
   }
 
   getCards() {
@@ -27,15 +27,13 @@ export class Api {
         'Content-Type': 'application/json',
       }
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err));
+    .then(this._checkResponse);
   }
   
+  getAllData() {
+    return Promise.all([this.getUser(), this.getCards()])
+  }
+
   changeUser(user) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
@@ -48,15 +46,7 @@ export class Api {
         about: user.about
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => {
-      console.log(err)
-    }); 
+    .then(this._checkResponse); 
   }
      
   postCard(newCard) {
@@ -71,13 +61,7 @@ export class Api {
         link: newCard.link
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err)); 
+    .then(this._checkResponse); 
   }
 
   deleteCard(delCardId) {
@@ -87,13 +71,7 @@ export class Api {
         authorization: this._authorization,
       },
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err)); 
+    .then(this._checkResponse); 
   }
 
   likeYes(id) {
@@ -103,13 +81,7 @@ export class Api {
         authorization: this._authorization,
       },
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err)); 
+    .then(this._checkResponse); 
   }
       
   likeNo(id) {
@@ -119,13 +91,7 @@ export class Api {
         authorization: this._authorization,
       },
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => console.log(err)); 
+    .then(this._checkResponse); 
   }
       
   changeAvatar(user) {
@@ -139,12 +105,6 @@ export class Api {
         avatar: user.avatar
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json()
-      } 
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
-    .catch(err => {console.log(err)}); 
+    .then(this._checkResponse); 
   }
 }

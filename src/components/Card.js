@@ -34,10 +34,9 @@ export class Card{
     if (this._likes.includes(this._myId)) {
       this._cardLikeButton.classList.add('button_action_like-active');
       this._isLike = true
-    } else this._isLike = false;
-    if (this._myId !== this._owner) {
-      this._handlDdeleteCard(this._cardDelButton);
-    }
+    }  else this._isLike = false;
+    if (this._myId !== this._owner) {this._handlDdeleteCard(this._cardDelButton)}
+
     return this._element;
   }
 
@@ -51,11 +50,12 @@ export class Card{
     }
   }
 
-  _handleLikeCard() {
-   this._cardLikes.textContent = this._likes.length; 
-   this._element.querySelector('.button_action_like').classList.toggle('button_action_like-active');
+  updateLikes(ArrUserId) {
+    this._cardLikes.textContent = ArrUserId.length;
+    this._element.querySelector('.button_action_like').classList.toggle('button_action_like-active');
+    this._isLike = this.isLike(ArrUserId);
   }
-  
+
   deleteCard() {
      this._handlDdeleteCard(this._element); 
   }
@@ -66,9 +66,8 @@ export class Card{
   }
   
   _setEventListeners() {
-    this._element.querySelector('.button_action_like').addEventListener('click', () => {this._handleLikeClick(this._isLike, this._cardLikes, this._element)});
+    this._element.querySelector('.button_action_like').addEventListener('click', () => {this._handleLikeClick(this._isLike)});
     this._element.querySelector('.button_action_delete').addEventListener('click', () => {this._handleDeleteIconClick(this._card)});
     this._cardElementImage.addEventListener('click', () => {this._handlPreviewCard(this._name, this._link)}); 
- 
   }
 }
